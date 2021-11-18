@@ -1,4 +1,4 @@
-# JavaScript基础语法学习笔记
+# JavaScript基础语法学习笔记01
 
 
 
@@ -276,12 +276,6 @@ console.log(Boolean(undefined)); //false
 ```
 
 
-
-## 运算符
-
-
-
-### 算术运算符
 
 
 
