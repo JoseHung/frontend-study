@@ -231,3 +231,25 @@ length属性是可读写的
   console.log(arr); // 操作台的输出结果不是arr的内容，而是'数组'
   ```
 
+
+
+### 冒泡排序
+
+基本思想：比较相邻的两个元素的大小，如果这两个元素顺序错误则交换两个元素的位置，重复这样的操作直到所有元素位置正确即完成排序。
+
+```js
+function bubbleSort(arr) {           //将元素按从小到大顺序排列
+    var len = arr.length;
+    for (var i = 0; i < len - 1; i++) {     // 外层循环每执行一次便有一个元素完成排序，内层循环就可以少执行一次
+        for (var j = 0; j < len - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {        // 相邻元素两两对比
+                var temp = arr[j+1];        // 元素交换
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    return arr;
+}
+```
+
