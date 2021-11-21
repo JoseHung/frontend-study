@@ -168,3 +168,86 @@ console.log(a); // 报错，a为局部变量，未被声明
 
 ## 对象
 
+JS中的对象是一组无序的相关属性和方法的集合
+
+
+
+### 创建对象
+
+- 利用字面量创建对象 {}
+
+  ```js
+  var obj = {}; // 创建了一个空对象
+  var obj = {
+      name: 'Kobe',
+      age: 17,
+      sex: 'male',
+      practice: function() {
+          console.log('practicing');
+      }
+  }
+  // 对象中的属性和方法采用键值对的形式 属性名（键）: 属性值（值）
+  // 调用属性的两种方法：1、对象名.属性名；2、对象名['属性名']
+  // 调用方法的方法： 对象名.方法名()
+  ```
+
+- 利用 new Object 创建对象
+
+  ```js
+  var obj = new Object(); // 创建了一个空对象
+  obj.name = 'Kobe';
+  obj.age = 17;
+  obj.sex = 'male';
+  obj.practice = function() {
+  	console.log('practicing');
+  }
+  ```
+
+- 利用构造函数创建对象
+
+  ```js
+  // 构造函数的语法
+  function 构造函数名() {
+      this.属性 = 值；
+      this.方法 = function() {}
+  }
+  new 构造函数名();
+  
+  // 举例
+  function Player(name, age, sex) { // 构造函数名首字母要大写
+      this.name = name;
+      this.age = age;
+      this.sex = sex;
+      this.practice = function() {
+          console.log('practicing');
+      }
+  }
+  new Player('Kobe', 17, 'male');
+  ```
+
+  new关键字的执行过程
+
+  1. new 构造函数在内存中创建了一个空的对象
+  2. this 会指向创建的空对象
+  3. 执行构造函数中的代码，给空对象添加属性和方法
+  4. 返回这个对象
+
+
+
+### 遍历对象
+
+for...in 语句用于对数组或者对象的属性进行循环操作
+
+```js
+var obj = {
+    name: 'Kobe',
+    age: 17,
+    sex: 'male'
+}
+
+for (var k in obj) {
+    console.log(k); // 得到各属性名
+    console.log(obj[k]); // 得到对象的各属性值（需要注意写法）
+}
+```
+
