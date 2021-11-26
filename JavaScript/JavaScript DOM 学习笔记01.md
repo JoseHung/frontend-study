@@ -6,8 +6,6 @@ DOM（Document Object Model）是W3C推荐的用于处理 HTML / XML 的标准�
 
 ## HTML DOM 树
 
-![ct_htmltree](F:\前端学习笔记\ct_htmltree.gif)
-
 - 文档：一个页面就是一个文档，DOM 中使用 document 表示
 - 元素：页面中所有标签都是元素，DOM 中使用 element 表示
 - 节点：网页中的所有内容都是节点（标签、属性、文本、注释等），DOM 中用 node 表示
@@ -90,13 +88,13 @@ btn.onclick = function() {
 
 
 
-## 操作元素
+## 修改元素
 
 ### 修改元素内容
 
 - element.innerText
 
-  修改从起始位置到终止位置的内容，去除了HTML标签、空格和换行
+  修改从起始位置到终止位置的内容，不识别标签、空格和换行，可读写
 
   ```js
   // 修改时间的例子
@@ -115,6 +113,59 @@ btn.onclick = function() {
   </script>
   ```
 
-- element.innerHTML
+- element.innerHTML( W3C 推荐使用)
 
+  同样可以修改内容，可以识别标签、空格和换行，可读写
+
+
+
+### 修改元素属性
+
+和对元素内容修改类似，可以根据事件执行的过程顺序对元素的相关属性进行修改，包括src、href、id、alt、title等
+
+
+
+### 修改表单元素属性
+
+利用DOM可以对表单元素的属性进行修改，如type、value、checked、selected、disabled等
+
+```js
+// 
+<button>按钮</button>
+<input type="text" value="输入内容">
+<script>
+    // 获取元素
+	var btn = document.querySelector('button');
+	var input = document.querySelector('input');
+	btn.onclick = function() {
+        // 通过 innerText 和 innerHTML 无法修改表单里面的值
+        input.value = '被点击了';
+        // 点击按钮后就禁用该按钮
+        btn.disabled = true;
+    }
+</script>
+```
+
+
+
+### 修改样式属性
+
+可以通过JS修改元素的大小、颜色、位置等样式
+
+- element.style  行内样式操作
+
+  ```js
+  <div></div>
+  <script>
+      var div = document.querySelector('div');
+  	div.onclick = function() {
+          this.style.backgroundColor = 'black';
+          this.style.width = 180px;
+      }
+  </script>
   
+  // JS 修改 style 样式后，产生的是行内样式，在 CSS 中的优先级较高
+  
+  ```
+
+- element.className  类名样式操作
