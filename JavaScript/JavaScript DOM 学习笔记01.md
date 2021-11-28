@@ -6,7 +6,7 @@ DOM（Document Object Model）是W3C推荐的用于处理 HTML / XML 的标准�
 
 ## HTML DOM 树
 
-![ct_htmltree](F:\前端学习笔记\frontend-study-record\JavaScript\参考图片\ct_htmltree.gif)
+![](参考图片/ct_htmltree.gif)
 
 - 文档：一个页面就是一个文档，DOM 中使用 document 表示
 - 元素：页面中所有标签都是元素，DOM 中使用 element 表示
