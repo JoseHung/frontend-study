@@ -6,7 +6,7 @@ DOM（Document Object Model）是W3C推荐的用于处理 HTML / XML 的标准�
 
 ## HTML DOM 树
 
-![](参考图片/ct_htmltree.gif)
+![](image/ct_htmltree.gif)
 
 - 文档：一个页面就是一个文档，DOM 中使用 document 表示
 - 元素：页面中所有标签都是元素，DOM 中使用 element 表示
@@ -125,6 +125,30 @@ btn.onclick = function() {
 
 和对元素内容修改类似，可以根据事件执行的过程顺序对元素的相关属性进行修改，包括src、href、id、alt、title等
 
+#### 获取元素属性值
+
+1. element.属性;
+
+   用于获取内置的属性值，即元素本身自带的属性
+
+2. element.getAttribute('属性');
+
+   用于获取自定义的属性
+
+#### 设置元素属性值
+
+1. element.属性 = '值';
+
+   用于设置内置属性
+
+2. element.setAttribute('属性', '值');
+
+   主要用于设置自定义属性
+
+#### 移除元素属性值
+
+element.removeAttribute('属性');
+
 
 
 ### 修改表单元素属性
@@ -132,7 +156,6 @@ btn.onclick = function() {
 利用DOM可以对表单元素的属性进行修改，如type、value、checked、selected、disabled等
 
 ```js
-// 
 <button>按钮</button>
 <input type="text" value="输入内容">
 <script>
@@ -167,7 +190,73 @@ btn.onclick = function() {
   </script>
   
   // JS 修改 style 样式后，产生的是行内样式，在 CSS 中的优先级较高
+  // 样式少 功能简单时使用
   
   ```
 
 - element.className  类名样式操作
+
+  对于修改的样式较大或者功能较复杂时，修改元素的className可以将元素直接修改为写好的样式。className会覆盖原先的类名，如果要保留原先的类名，则在使用className修改时加上原先的类名。
+
+
+
+### 排他思想
+
+如果有同一组元素，想让其中一个元素实现样式的更改，则需要用到循环的排他思想：
+
+1. 将这一组所有元素的样式清除
+2. 给需要更改的当前元素设置样式
+3. 顺序不能更改
+
+
+
+### H5自定义属性
+
+H5规定自定义属性名称以data-开头
+
+```html
+<div data-index="1"></div>
+```
+
+```js
+element.setAttribute('data-index','1');
+```
+
+
+
+#### 获取H5自定义属性
+
+1. 兼容性获取  
+
+   ```js
+   element.getAttribute('data-index');
+   ```
+
+2. H5新增方法
+
+   ```js
+   element.dataset.index; // 不需要再加上data-
+   element.dataset['index']; 
+   ```
+
+
+
+## 节点操作
+
+利用DOM提供的方法获取元素的操作逻辑性不强，较为繁琐；可以利用父子兄节点层级关系获取元素，这种方法具有较强的逻辑性但兼容性较差。
+
+网页中的所有内容都是节点（标签、属性、文本、注释等），一般来说，节点具有三个基本属性。
+
+- nodeType  
+  - 元素节点为1
+  - 属性节点为2
+  - 文本节点为3
+- nodeName
+- nodeValue
+
+实际开发中节点操作主要是针对的是元素节点
+
+
+
+
+
