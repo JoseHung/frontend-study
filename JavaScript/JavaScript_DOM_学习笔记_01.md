@@ -241,7 +241,7 @@ element.setAttribute('data-index','1');
 
 
 
-## 节点操作
+## 节点
 
 利用DOM提供的方法获取元素的操作逻辑性不强，较为繁琐；可以利用父子兄节点层级关系获取元素，这种方法具有较强的逻辑性但兼容性较差。
 
@@ -258,5 +258,43 @@ element.setAttribute('data-index','1');
 
 
 
+#### 父节点
 
+node.parentNode 可以返回某节点的最近父节点，如果没有父节点则返回null
+
+
+
+#### 子节点
+
+- parentNode.childNodes 
+
+  会得到某个节点的所有子节点，包括元素节点、属性节点和文本节点，一般不提倡使用
+
+- parentNode.children
+
+  可以返回所有的子元素节点，虽然是非标准，但是得到了各个浏览器的支持，可以使用
+
+- parentNode.firstChild 
+
+  返回第一个子节点，包括所有类型
+
+- parentNode.lastChild
+
+  返回最后一个子节点，包括所有类型
+
+- parentNode.firstElementChild
+
+  返回第一个子元素节点（兼容性问题，IE9以上支持）
+
+- parentNode.lastElementChild
+
+  返回最后一个子元素节点（兼容性问题，IE9以上支持）
+
+- parentNode.children[i]
+
+  实际开发中的写法，没有兼容性的问题
+
+#### 兄弟节点
+
+#### 节点操作
 
