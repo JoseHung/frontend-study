@@ -294,7 +294,66 @@ node.parentNode 可以返回某节点的最近父节点，如果没有父节点�
 
   实际开发中的写法，没有兼容性的问题
 
+
+
 #### 兄弟节点
 
-#### 节点操作
+- node.nextSibling
+
+  返回下一个兄弟节点，包括所有类型
+
+- node.previousSibling
+
+  返回上一个兄弟节点，包括所有类型
+
+- node.nextElementSibling
+
+  返回下一个兄弟元素节点（兼容性问题，IE9以上支持）
+
+- node.previousElementSibling
+
+  返回上一个兄弟元素节点（兼容性问题，IE9以上支持）
+
+- 通过封装一个判断元素类型的函数可以解决兼容性问题
+
+
+
+#### 创建和添加节点
+
+创建节点
+
+document.creatElement('tagName')  
+
+该方法动态地创建由tagName指定的HTML元素节点
+
+
+
+添加节点
+
+- node.appendChild(child)
+
+  该方法将一个节点添加到node父节点的子节点列表末尾
+
+- node.insertBefore(child, 指定元素)
+
+  该方法将一个节点添加到node父节点的指定子节点之前
+
+
+
+#### 删除节点
+
+node.removeChild(child)
+
+删除node父元素的child子节点，并返回删除的子节点
+
+
+
+#### 复制节点
+
+node.cloneNode()
+
+该方法能返回node节点的一个副本节点
+
+- 参数为空或者false，则是浅拷贝，只复制节点本身，不复制其子节点
+- 参数为true，则是深拷贝，复制节点本身及其子节点
 
