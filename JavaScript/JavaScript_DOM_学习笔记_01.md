@@ -379,11 +379,75 @@ node.cloneNode()
 
 ### 注册事件
 
+传统注册事件的方式（利用on开头的事件如onclick）具有唯一性，对于同一元素同一事件只可以设置一个处理函数，最后一个注册的处理函数会覆盖前面注册的所有冲突函数。
+
+利用方法监听注册事件是w3c的标准，推荐使用。对于同一事件同一元素可以注册多个监听器。
+
+```js
+// addEventListener() 方法的语法规范
+eventTarget.addEventListener(type, listener, useCapture);
+// type是事件类型字符串，如click、mouseover等
+// listener是事件处理函数
+// useCapture是一个布尔类型的可选参数。当该值为true时，表示在事件捕获阶段调用事件处理程序；如果是false（默认值），则表示在事件冒泡阶段调用事件处理程序。
+
+btn[1].addEventListener('click', function() {
+    alert(111111);
+});
+
+// 对于IE9之前版本的浏览器，应该使用attachEvent()方法
+```
+
+
+
 ### 删除事件
+
+1. 传统注册方式
+
+   ```js
+   // 可以在事件函数的末尾加入如下代码
+   eventTarget.onclick = null;
+   ```
+
+2. 方法监听注册方式
+
+   ```js
+   // 通过removeEventListener()方法来实现
+   eventTarget.removeEventListener(type, listener, useCapture);
+   ```
+
+   
 
 ### DOM事件流
 
+事件流描述的是从页面中接收事件的顺序。事件发生时会在元素节点之间按照特定的顺序传播，这个过程就是DOM事件流。
+
+DOM事件流的3个阶段：
+
+1. 捕获阶段：事件首先被document元素捕获，然后沿DOM树依次向下传播，直至到达实际的目标元素。
+2. 当前目标阶段
+3. 冒泡阶段：事件在目标元素中最先被触发，然后沿着DOM树一路向上，在经过的每个节点上依次触发，直至到达document对象。
+
+实际开发中更关注事件的冒泡阶段。有些事件不具有冒泡阶段，如onblue、onfocus、onmouseenter、onmouseleave等
+
+
+
 ### 事件对象
+
+在DOM中发生事件时，所有相关信息都会被收集并存储在一个名为event的对象中。这个对象包含了一些基本信息，如导致事件的元素、发生的事件类型以及可能与特定事件相关的任何其他数据。
+
+```js
+let btn = document.getElementById('myBtn');
+btn.onclick = function (event) {
+    console.log(event.type);
+}
+btn.addEventListener('click', (event) => {
+    console.log(event.type);
+}, false);
+
+// 该event就是事件对象，是一个形参，当我们注册事件时，event对象就会被系统自动创建，并y
+```
+
+
 
 ### 阻止事件冒泡
 
