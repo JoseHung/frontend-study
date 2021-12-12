@@ -444,15 +444,59 @@ btn.addEventListener('click', (event) => {
     console.log(event.type);
 }, false);
 
-// 该event就是事件对象，是一个形参，当我们注册事件时，event对象就会被系统自动创建，并y
+// 该event就是事件对象，是一个形参，当我们注册事件时，event对象就会被系统自动创建，并依次传递给事件监听器
 ```
 
 
 
-### 阻止事件冒泡
+#### 事件对象常见的属性和方法
+
+1. target和currentTarget
+
+   在事件处理程序内部，this对象始终等于currentTarget的值，指的是当前事件处理程序所在的元素；而target指的是事件的实际目标元素。
+
+2. 返回事件类型
+
+   event.type属性在一个处理程序处理多个事件时很有用
+
+   ```js
+   let btn = document.getElementById('myBtn');
+   let handler = function(event) {
+       switch(event.type) {
+           case 'click':
+               console.log('Clicked');
+               break;
+           case 'mouseover':
+               event.target.style.backgroundColor = 'red';
+               break;
+           case 'mouseout':
+               event.target.style.backgroundColor = '';
+               break;
+       }
+   };
+   btn.onclick = handler;
+   btn.onmouseover = handler;
+   btn.onmouseout = handler;
+   ```
+
+3. 取消默认行为
+
+   preventDefault()方法用于组织特定事件的默认动作。对于任何可以通过该方法取消默认行为的事件，其事件对象的cancelable属性都会设置为true。
+
+   ```js
+   // 取消点击链接后默认跳转的行为
+   let link = document.getElementById('myLink');
+   link.onclick = function(event) {
+       event.preventDefault();
+   };
+   ```
+
+4. 阻止事件冒泡
+
+   stopPropagation()方法可以立即阻止事件流在DOM结构中传播，取消后续的事件捕获或冒泡。
+
+   
 
 ### 事件委托
 
-### 常用鼠标事件
-
-### 常用键盘事件
+通过对父节点设置事件监听器，然后利用冒泡原理实现对每个子节点的设置。通过该方法可以提高程序的效率。
