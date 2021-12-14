@@ -6,28 +6,31 @@ window对象是浏览器的顶级对象，它是JS访问浏览器窗口的一个
 
 
 
-## window对象
+### Location
 
-### 窗口位置
-
-可以使用如下方法来移动窗口
-
-- moveTo()，参数为要移动到的新位置的绝对坐标x和y。
-
-- moveBy()，参数为相对当前位置在两个方向上要移动的像素数。
-
-  ```js
-  // 把窗口移到左上角
-  window.moveTo(0, 0);
-  
-  // 窗口向下移动100像素
-  window.moveBy(0, 100);
-  ```
-
-  
-
-### 像素比
+- location.href-- 返回或设置当前文档的URL
+- location.search -- 返回URL中的查询字符串部分。例如 http://www.dreamdu.com/dreamdu.php?id=5&name=dreamdu 返回包括(?)后面的内容?id=5&name=dreamdu
+- location.hash -- 返回URL#后面的内容，如果没有#，返回空
+- location.host -- 返回URL中的域名部分，例如[www.dreamdu.com](http://www.dreamdu.com/)
+- location.hostname -- 返回URL中的主域名部分，例如dreamdu.com
+- location.pathname -- 返回URL的域名后的部分。例如 http://www.dreamdu.com/xhtml/ 返回/xhtml/
+- location.port -- 返回URL中的端口部分。例如 http://www.dreamdu.com:8080/xhtml/ 返回8080
+- location.protocol -- 返回URL中的协议部分。例如 http://www.dreamdu.com:8080/xhtml/ 返回(//)前面的内容http:
+- location.assign -- 设置当前文档的URL
+- location.replace() -- 设置当前文档的URL，并且在history对象的地址列表中移除这个URL location.replace(url)
+- location.reload() -- 重载当前页面
 
 
 
-### 窗口大小
+### history对象
+
+- history.go() -- 前进或后退指定的页面数 history.go(num)
+- history.back() -- 后退一页
+- history.forward() -- 前进一页
+
+
+
+### Navigator对象
+
+- navigator.userAgent -- 返回用户代理头的字符串表示(就是包括浏览器版本信息等的字符串)
+- navigator.cookieEnabled -- 返回浏览器是否支持(启用)cookie
