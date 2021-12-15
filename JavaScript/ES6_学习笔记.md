@@ -170,3 +170,78 @@ console.log(1, ...[2, 3, 4], 5)
 // [<div>, <div>, <div>]
 ```
 
+
+
+## Symbol
+
+Symbol是es6引入的新的原始数据类型，用来表示独一无二的值，以解决传统字符串对变量名的命名冲突。
+
+1. symbol的值唯一；
+2. symbol的值不能与其他数据进行运算；
+3. symbol定义的对象属性不能使用for...in...循环遍历，但是可以使用Reflect.ownKeys来获取对象的所有键名。
+
+
+
+## Iterator
+
+Iterator 的作用有三个：
+
+1. 为各种数据结构，提供一个统一的、简便的访问接口；
+2. 使得数据结构的成员能够按某种次序排列；
+3.  ES6 创造了一种新的遍历命令 for...of 循环，Iterator 接口主要供 for...of 消费。	
+
+
+
+Iterator的遍历过程：
+
+1. 创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。
+2. 第一次调用指针对象的 next 方法，可以将指针指向数据结构的第一个成员。
+3. 第二次调用指针对象的 next 方法，指针就指向数据结构的第二个成员。
+4. 不断调用指针对象的 next 方法，直到它指向数据结构的结束位置。
+
+每一次调用 next 方法，都会返回数据结构的当前成员的信息。具体来说，就是返回一个包含 value 和 done 两个属性的对象。其中， value 属性是当前成员的值， done 属性是一个布尔值，表示遍历是否结束。
+
+
+
+需要自定义遍历数据时应该想到使用迭代器。
+
+```js
+var it = makeIterator(['a', 'b']);
+it.next() // { value: "a", done: false }
+it.next() // { value: "b", done: false }
+it.next() // { value: undefined, done: true }
+function makeIterator(array) {
+  var nextIndex = 0;
+  return {
+    next: function() {
+      return nextIndex < array.length ?
+        {value: array[nextIndex++], done: false} :
+        {value: undefined, done: true};
+    }
+  };
+}
+```
+
+
+
+## Generator
+
+Generator是ES6提供的一种异步编程解决方案。
+
+```js
+function* helloWorldGenerator() {
+  yield 'hello';  
+  yield 'world';
+  return 'ending';
+}
+var hw = helloWorldGenerator();
+// 在定义生成器函数时，函数名与function之间需要加上一个 * 
+// 函数体内部使用 yield 表达式，定义不同的内部状态
+// 调用 Generator 函数后，该函数并不执行，必须调用遍历器对象的 next 方法，使得指针移向下一个状态
+// next 方法可以带一个参数，该参数就会被当作上一个 yield 表达式的返回值。
+```
+
+
+
+## Promise
+
