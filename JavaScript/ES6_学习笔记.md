@@ -245,3 +245,117 @@ var hw = helloWorldGenerator();
 
 ## Promise
 
+Promise（期约），是目前主流的异步编程机制。ES6新增了引用类型Promise，可以通过new操作符来对其实例化。
+
+promise有三种状态，状态是私有的，只能在内部即promise的执行器函数中对状态进行转换，状态改变后是不可逆的。
+
+- pending
+- fulfilled 
+- rejected
+
+```js
+// 状态的转换是通过调用resolve()和reject()函数实现的
+let p = new Promise((resolve, reject) => {
+    resolve(); // 状态变为fulfilled
+    reject(); // 没有效果
+});
+setTimeout(console.log, 0, p); // Promise <resolved>
+```
+
+通过then方法实现对不同状态的处理
+
+```js
+let myPromise = new Promise(function(myResolve, myReject) {
+// "Producing Code"（可能需要一些时间）
+
+  myResolve(); // 成功时
+  myReject();  // 出错时
+});
+
+// "Consuming Code" （必须等待一个兑现的承诺）
+myPromise.then(
+  function(value) { /* 成功时的代码 */ },
+  function(error) { /* 出错时的代码 */ }
+);
+```
+
+
+
+## Set()
+
+Set 是唯一值的集合，每个值在 Set 中只能出现一次，一个 Set 可以容纳任何数据类型的任何值。
+
+```js
+// 创建新的变量
+const a = "a";
+const b = "b";
+const c = "c";
+// 创建 Set
+const letters = new Set();
+// Add the values to the Set
+letters.add(a);
+letters.add(b);
+letters.add(c);
+// 如果添加相等的元素，则只会保存第一个元素
+```
+
+### 常用的方法和属性
+
+| new Set() |    创建新的 Set 对象。    |
+| --------- | :-----------------------: |
+| add()     |    向 Set 添加新元素。    |
+| clear()   |  从 Set 中删除所有元素。  |
+| delete()  |  删除由其值指定的元素。   |
+| entries() | 返回 Set 对象中值的数组。 |
+| has()     |  如果值存在则返回 true。  |
+| forEach() |   为每个元素调用回调。    |
+| keys()    | 返回 Set 对象中值的数组。 |
+| values()  |     与 keys() 相同。      |
+| size      |      返回元素计数。       |
+
+
+
+## Map()
+
+Map 对象存有键值对，其中的键可以是任何数据类型。
+
+Map 对象记得键的原始插入顺序。
+
+Map 对象具有表示映射大小的属性。
+
+### 基本方法和属性
+
+| new Map() | 创建新的 Map 对象。            |
+| --------- | ------------------------------ |
+| set()     | 为 Map 对象中的键设置值。      |
+| get()     | 获取 Map 对象中键的值。        |
+| entries() | 返回 Map 对象中键/值对的数组。 |
+| keys()    | 返回 Map 对象中键的数组。      |
+| values()  | 返回 Map 对象中值的数组。      |
+| clear()   | 删除 Map 中的所有元素。        |
+| delete()  | 删除由键指定的元素。           |
+| has()     | 如果键存在，则返回 true。      |
+| forEach() | 为每个键/值对调用回调。        |
+| size      | 获取 Map 中键的值。            |
+
+```js
+// 创建对象
+const apples = {name: 'Apples'};
+const bananas = {name: 'Bananas'};
+const oranges = {name: 'Oranges'};
+// 创建新的 Map
+const fruits = new Map();
+// 将对象添加到Map中
+fruits.set(apples, 500);
+fruits.set(bananas, 300);
+fruits.set(oranges, 200);
+```
+
+### JavaScript 对象和 Map 之间的差异
+
+|        | 对象                         | Map                      |
+| :----- | :--------------------------- | :----------------------- |
+| Size   | 对象没有 size 属性           | Maps 有 size 属性        |
+| 键类型 | 对象键必须是字符串（或符号） | Map 键可以是任何数据类型 |
+| 键顺序 | 对象键没有很好地排序         | Map 键按插入排序         |
+| 默认   | 对象有默认键                 | Map 没有默认键           |
