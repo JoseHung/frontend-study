@@ -359,3 +359,86 @@ fruits.set(oranges, 200);
 | 键类型 | 对象键必须是字符串（或符号） | Map 键可以是任何数据类型 |
 | 键顺序 | 对象键没有很好地排序         | Map 键按插入排序         |
 | 默认   | 对象有默认键                 | Map 没有默认键           |
+
+
+
+## class
+
+在JS中，class是对象的模板。
+
+使用关键字 class 创建一个类，并始终为class添加一个名为 constructor() 的方法。
+
+```js
+class Car {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+  age() {
+    let date = new Date();
+    return date.getFullYear() - this.year;
+  }
+}
+
+let myCar = new Car("Ford", 2014);
+document.getElementById("demo").innerHTML =
+"My car is " + myCar.age() + " years old.";
+```
+
+
+
+### class继承
+
+使用类继承创建的类继承了另一个类的所有方法。如需创建类继承，需要使用 extends 关键字。
+
+```js
+class Car {
+  constructor(brand) {
+    this.carname = brand;
+  }
+  present() {
+    return 'I have a ' + this.carname;
+  }
+}
+
+class Model extends Car {
+  constructor(brand, mod) {
+    super(brand);  // 通过在 constructor 方法中调用super()方法，可以调用父级的 constructor 方法，并获得父级的属性和方法的访问权限
+    this.model = mod;
+  }
+  show() {
+    return this.present() + ', it is a ' + this.model;
+  }
+}
+
+let myCar = new Model("Ford", "Mustang");
+document.getElementById("demo").innerHTML = myCar.show();
+```
+
+
+
+### Getter 和 Setter
+
+```js
+class Car {
+  constructor(brand) {
+    this._carname = brand;
+  }
+    // getter/setter 方法的名称不能与属性名称相同
+  get carname() {   
+    return this._carname;
+  }
+  set carname(x) {
+    this._carname = x;
+  }
+}
+
+let myCar = new Car("Ford");
+myCar.carname = "Volvo";
+// 在需要获取属性值时不需要使用括号
+document.getElementById("demo").innerHTML = myCar.carname;
+```
+
+
+
+类的声明不会被提升，所以必须先声明类再使用。
