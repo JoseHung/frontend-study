@@ -1,4 +1,4 @@
-# JavaScript DOM 学习笔记01
+# JavaScript DOM 学习笔记 01
 
 DOM（Document Object Model）是W3C推荐的用于处理 HTML / XML 的标准编程接口。通过已经定义好的一系列 DOM 接口，可以实现对网页内容、样式和结构的改变。
 
