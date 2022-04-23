@@ -185,3 +185,16 @@ Object.defineProperty(obj2, 'x',{
 ```
 
  
+
+### Vue中的数据代理
+
+通过 `vm` 对象来代理对 `data` 对象中属性的读写操作，使操作更方便。
+
+原理：
+
+1. 通过 `Object.defineProperty()` 方法把 `data` 中的所有属性添加到 `vm` 上
+2. 为所有被添加到 `vm` 中的属性指定一个 `getter` 和 `setter`
+3. 在 `getter` 和 `setter` 内部去操作 `data` 中对应的属性
+
+
+
