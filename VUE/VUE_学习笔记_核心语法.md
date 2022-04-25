@@ -355,3 +355,51 @@ Object.defineProperty(obj2, 'x',{
 
 ## 监视属性
 
+```html
+<div class="root">
+    <h2>
+        今天天气很{{info}}
+    </h2>
+    <button @click="changeWeather">
+        切换天气
+    </button>
+</div>
+
+<script type="text/javascript">
+	const vm = new Vue({
+        el:'#root',
+        data:{
+            isHot:true,
+        },
+        computed:{
+            info:{
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        }
+        methods:{
+			changeWeather:{
+        		this.isHot = !this.isHot
+    		}                  
+		}
+        watch:{
+			isHot:{
+            	immediate:true, // 初始化时让handler调用
+                handler(newValue, oldValue){
+        			console.log('isHot被修改了', newValue, oldValue)
+    			}
+            }
+        }
+    })
+</script>
+```
+
+
+
+1. 当被监视的属性变化时，回调函数自动调用，进行相关操作；
+2. 只有当被监视的属性存在时才能够正常执行监视功能；
+3. 监视的两种写法
+   1. `new Vue` 时传入 `wathch` 配置；
+   2. 通过 `vm.$watch` 监视。
+
+
+
