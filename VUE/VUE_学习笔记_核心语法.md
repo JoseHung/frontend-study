@@ -513,3 +513,34 @@ Object.defineProperty(obj2, 'x',{
    1. 使用数据的唯一标识作为 `key` ，如 `id` 、手机号、身份证号等；
    2. 若不存在对数据的逆序添加、逆序删除等打乱顺序的操作，仅用于渲染列表进行展示，则可以使用 `index` 作为 `key` 。
 
+
+
+## `Vue` 监视数据的原理
+
+1.  `Vue` 会监视 `data` 中所有层次的数据；
+
+2. 对对象中的数据检测通过 `setter` 实现，且在 `new Vue` 时就要传入需要检测的数据；
+
+   1. 对象中后追加的属性， `Vue` 默认不做响应式处理；
+
+   2. 如需要给后添加的属性做相应式处理，则需要使用如下 `API` ：
+
+      ```vue
+      Vue.set(target, propertyName/index, value)
+      或
+      vm.$set(target, propertyName/index, value)
+      ```
+
+3. 对数组中的数据检测通过包裹数组更新元素的方法实现，本质就是做了两件事：
+
+   1. 调用原生对应的方法对数组进行更新；
+   2. 重新解析模板，然后更新页面。
+
+4. 在 `Vue` 修改数组中的某个元素一定要用如下方法：
+
+   1. 使用这7个 `API` ：`push()` `pop()` `shift()` `unshift()` `splice()` `sort()` `reverse()`；
+   2.  `Vue.set()` 或 `vm.$set()`
+
+
+
+需要注意的是，`Vue.set()` 和 `vm.$set()` 不能够给 `vm` 或 `vm` 的根数据对象添加属性。
