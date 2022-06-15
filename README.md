@@ -3,6 +3,7 @@
 #### 介绍
 记录学习前端过程
 
+- HTML基础语法
 - JavaScript基础语法（涵盖ES6新特性）
 - AJAX
 - Vue框架
