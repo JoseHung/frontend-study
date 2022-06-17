@@ -4,6 +4,7 @@
 记录学习前端过程
 
 - HTML5基础语法
+- [HTML5基础语法](./HTML)
 - CSS3基础语法
 - JavaScript基础语法（涵盖ES6新特性）
 - AJAX
