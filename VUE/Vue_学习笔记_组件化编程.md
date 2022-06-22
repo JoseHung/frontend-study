@@ -46,3 +46,22 @@ Vue.component('button-counter', {
 new Vue({ el: '#components-demo' })
 ```
 
+
+
+## VueComponent
+
+1. 我们定义创建的组件本质是一个名为 `VueComponent` 的构造函数，这是 `Vue.extent` 定义的。
+
+2. `Vue` 在解析组件标签时会帮我们创建组件的实例对象，即会执行下述过程：
+
+   ```vue
+   new VueComponent(options)
+   ```
+
+3. 每次调用 `Vue.extent` ，返回的都是一个全新的 `VueComponent` 。
+
+4. 关于 `this` 的指向：
+
+   - 组件配置中： `data` 函数、 `methods` 中的函数、 `watch` 中的函数、 `computed` 中的函数，其 `this` 均为 `VueComponent` 实例对象；
+   - `new Vue(options)` 配置中： `data` 函数、 `methods` 中的函数、 `watch` 中的函数、 `computed` 中的函数，其 `this` 均为 `Vue` 实例对象。
+
