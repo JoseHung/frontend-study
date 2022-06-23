@@ -65,3 +65,19 @@ new Vue({ el: '#components-demo' })
    - 组件配置中： `data` 函数、 `methods` 中的函数、 `watch` 中的函数、 `computed` 中的函数，其 `this` 均为 `VueComponent` 实例对象；
    - `new Vue(options)` 配置中： `data` 函数、 `methods` 中的函数、 `watch` 中的函数、 `computed` 中的函数，其 `this` 均为 `Vue` 实例对象。
 
+
+
+## 组件实例对象中的内置关系
+
+关于组件实例对象有一个重要的内置关系：
+
+```vue
+VueComponent.prototype.__proto__ === Vue.prototype
+```
+
+也就是让组件实例对象能够访问到 `Vue` 原型上的属性和方法。
+
+
+
+## 单文件组件
+
